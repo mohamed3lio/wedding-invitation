@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Omar & Sarah's Wedding Invitation - June 26, 2026. Join us to celebrate our special day.">
+  <title>Omar & Sarah | Wedding Invitation</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Montserrat:wght@200;300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0d0b0a;
+      font-family: 'Montserrat', sans-serif;
+      color: #e8e2d4;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    /* Elegant Dark Palette */
+    :root {
+      --deep-burgundy: #6b1a2a;
+      --gold: #c9a03d;
+      --gold-light: #e2c28b;
+      --cream: #f9f3e2;
+      --dark-bg: #1a1512;
+      --charcoal: #2c241e;
+    }
+
+    h1, h2, h3, .hero-name, .section-title {
+      font-family: 'Playfair Display', 'Cormorant Garamond', serif;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ========== ELEGANT ENVELOPE OVERLAY ========== */
+    .envelope-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(ellipse at center, #2a201a 0%, #0a0807 100%);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: opacity 1.2s ease, visibility 1.2s ease;
+    }
+
+    .envelope-overlay.hide {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    /* Elegant Envelope Design */
+    .elegant-envelope {
+      position: relative;
+      width: 400px;
+      height: 270px;
+      cursor: pointer;
+      transition: all 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      filter: drop-shadow(0 25px 35px rgba(0, 0, 0, 0.5));
+    }
+
+    .elegant-envelope:hover {
+      transform: translateY(-12px) scale(1.02);
+      filter: drop-shadow(0 35px 50px rgba(0, 0, 0, 0.6));
+    }
+
+    .env-body {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 145px;
+      background: linear-gradient(145deg, #8b2638, #5c1624);
+      border-radius: 0 0 20px 20px;
+      border: 2px solid #c9a03d;
+      border-top: none;
+      box-shadow: inset 0 2px 5px rgba(255,215,120,0.3);
+    }
+
+    .env-flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 0;
+      border-top: 135px solid #9e2d40;
+      border-left: 200px solid transparent;
+      border-right: 200px solid transparent;
+      border-radius: 20px 20px 0 0;
+    }
+
+    .env-flap::before {
+      content: '';
+      position: absolute;
+      top: -135px;
+      left: -200px;
+      width: 100%;
+      height: 135px;
+      background: linear-gradient(135deg, rgba(201,160,61,0.3) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .env-gold-border {
+      position: absolute;
+      top: 20px;
+      left: 10%;
+      width: 80%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #e2b85c, #f5e2a0, #e2b85c, transparent);
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .env-seal {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 95px;
+      height: 95px;
+      background: radial-gradient(circle, #e9d8a0, #c9a03d);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255,255,220,0.6), 0 0 0 3px #8b2638, 0 0 0 6px #c9a03d;
+      z-index: 10;
+      transition: all 0.3s ease;
+    }
+
+    .env-seal:hover {
+      transform: translate(-50%, -50%) scale(1.05);
+    }
+
+    .env-seal .seal-heart {
+      font-size: 2.6rem;
+      color: #6b1a2a;
+      text-shadow: 0 1px 1px rgba(255,255,200,0.5);
+    }
+
+    .env-corner {
+      position: absolute;
+      width: 35px;
+      height: 35px;
+      border: 1.5px solid #c9a03d;
+      opacity: 0.8;
+      z-index: 5;
+      pointer-events: none;
+    }
+    .corner-tl { top: 12px; left: 12px; border-right: none; border-bottom: none; }
+    .corner-tr { top: 12px; right: 12px; border-left: none; border-bottom: none; }
+    .corner-bl { bottom: 12px; left: 12px; border-right: none; border-top: none; }
+    .corner-br { bottom: 12px; right: 12px; border-left: none; border-top: none; }
+
+    .floating-heart-env {
+      position: absolute;
+      font-size: 1.3rem;
+      pointer-events: none;
+      animation: floatHeartEnv 2.8s ease-out forwards;
+      z-index: 10000;
+      color: #e2b85c;
+    }
+
+    @keyframes floatHeartEnv {
+      0% { transform: translateY(0) scale(0.5); opacity: 0.9; text-shadow: 0 0 5px gold; }
+      100% { transform: translateY(-200px) scale(1.2); opacity: 0; }
+    }
+
+    .main-content {
+      opacity: 0;
+      transition: opacity 1.2s ease;
+    }
+    .main-content.show { opacity: 1; }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #1a1410 0%, #2a201a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23c9a03d" fill-opacity="0.08" d="M0,256L48,240C96,224,192,192,288,176C384,160,480,160,576,176C672,192,768,224,864,224C960,224,1056,192,1152,176C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+      background-repeat: no-repeat;
+      background-position: bottom;
+      background-size: contain;
+      opacity: 0.5;
+    }
+
+    .hero-content {
+      z-index: 2;
+      animation: fadeInUp 1.2s ease-out;
+    }
+
+    .hero-name {
+      font-size: clamp(3rem, 10vw, 5.8rem);
+      font-weight: 700;
+      color: #e2c28b;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 4vw, 1.4rem);
+      font-weight: 300;
+      letter-spacing: 0.4em;
+      margin-bottom: 1.5rem;
+      color: #c9a03d;
+      text-transform: uppercase;
+    }
+
+    .hero-date {
+      font-size: clamp(1.2rem, 5vw, 1.8rem);
+      font-family: 'Playfair Display', serif;
+      color: #e2c28b;
+      border-top: 1px solid rgba(201, 160, 61, 0.5);
+      display: inline-block;
+      padding-top: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(40px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    section {
+      padding: 90px 0;
+      border-bottom: 1px solid rgba(201, 160, 61, 0.2);
+      background: #0d0b0a;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.8rem;
+      margin-bottom: 3rem;
+      color: #e2c28b;
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+
+    .section-title:after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 2px;
+      background: var(--gold);
+      margin: 0.8rem auto 0;
+    }
+
+    .countdown-wrapper {
+      background: rgba(30, 20, 18, 0.7);
+      backdrop-filter: blur(4px);
+      box-shadow: 0 25px 40px -10px rgba(0,0,0,0.3), inset 0 1px 0 rgba(201,160,61,0.2);
+      border-radius: 28px;
+      padding: 40px 20px;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+      border: 1px solid rgba(201, 160, 61, 0.4);
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .time-box {
+      background: rgba(20, 15, 12, 0.8);
+      width: 110px;
+      padding: 1.2rem 0;
+      border-radius: 20px;
+      border: 1px solid #c9a03d;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .time-number {
+      font-size: 2.8rem;
+      font-weight: 600;
+      font-family: 'Playfair Display', serif;
+      color: #e2c28b;
+      line-height: 1;
+    }
+
+    .time-label {
+      text-transform: uppercase;
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      font-weight: 400;
+      color: #c9a03d;
+    }
+
+    .story-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .story-text {
+      flex: 1;
+      min-width: 260px;
+    }
+
+    .story-text p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 1.2rem;
+      font-weight: 300;
+      color: #d4cfc4;
+    }
+
+    .story-img {
+      flex: 1;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 25px 35px -12px rgba(0,0,0,0.4);
+      border: 2px solid rgba(201, 160, 61, 0.5);
+    }
+
+    .story-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.5s;
+    }
+
+    .story-img:hover img {
+      transform: scale(1.02);
+    }
+
+    .event-card {
+      background: rgba(30, 20, 18, 0.8);
+      backdrop-filter: blur(4px);
+      padding: 2rem;
+      border-radius: 36px;
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto;
+      border: 1px solid rgba(201, 160, 61, 0.5);
+      box-shadow: 0 20px 30px -10px rgba(0,0,0,0.3);
+    }
+
+    .event-detail {
+      margin: 1rem 0;
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: #e8dcc8;
+    }
+
+    .venue-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #9e2d40, #6b1a2a);
+      border: 1px solid #c9a03d;
+      padding: 12px 32px;
+      border-radius: 60px;
+      font-weight: 500;
+      color: #e2c28b;
+      text-decoration: none;
+      margin-top: 1.2rem;
+      cursor: pointer;
+      font-family: 'Montserrat', sans-serif;
+      transition: 0.3s;
+    }
+
+    .venue-btn:hover {
+      background: linear-gradient(135deg, #b8364d, #7e1f32);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+
+    .guest-message {
+      background: rgba(30, 20, 18, 0.7);
+      backdrop-filter: blur(3px);
+      border-radius: 36px;
+      padding: 3rem 2rem;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+      border: 1px solid rgba(201, 160, 61, 0.4);
+    }
+
+    .guest-message p {
+      font-size: 1.5rem;
+      line-height: 1.8;
+      font-family: 'Playfair Display', serif;
+      color: #e2c28b;
+      font-weight: 400;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 50px 20px 40px;
+      background: #0a0807;
+      color: #c9a03d;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      border-top: 1px solid rgba(201, 160, 61, 0.3);
+    }
+
+    .heart {
+      font-size: 1.2rem;
+      margin: 0 0.2rem;
+      color: #c9a03d;
+    }
+
+    .music-control {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      z-index: 1000;
+      background: rgba(30, 20, 18, 0.9);
+      backdrop-filter: blur(8px);
+      border-radius: 50%;
+      width: 55px;
+      height: 55px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      border: 1px solid #c9a03d;
+      transition: all 0.3s ease;
+    }
+
+    .music-control svg {
+      width: 28px;
+      height: 28px;
+      stroke: #e2c28b;
+      stroke-width: 1.5;
+      fill: none;
+    }
+
+    .music-control.playing svg path {
+      fill: #e2c28b;
+      stroke: #e2c28b;
+    }
+
+    @media (max-width: 768px) {
+      section { padding: 60px 0; }
+      .countdown { gap: 1rem; }
+      .time-box { width: 70px; padding: 0.8rem 0; }
+      .time-number { font-size: 1.9rem; }
+      .section-title { font-size: 2.2rem; }
+      .story-grid { flex-direction: column; }
+      .guest-message p { font-size: 1.2rem; }
+      .elegant-envelope { width: 300px; height: 210px; }
+      .env-flap { border-left: 150px solid transparent; border-right: 150px solid transparent; border-top: 105px solid #9e2d40; }
+      .env-body { height: 110px; }
+      .env-seal { width: 70px; height: 70px; }
+      .env-seal .seal-heart { font-size: 2rem; }
+      .music-control { width: 45px; height: 45px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ELEGANT ENVELOPE -->
+<div id="envelopeOverlay" class="envelope-overlay">
+  <div class="elegant-envelope">
+    <div class="env-flap"></div>
+    <div class="env-body"></div>
+    <div class="env-gold-border"></div>
+    <div class="env-corner corner-tl"></div>
+    <div class="env-corner corner-tr"></div>
+    <div class="env-corner corner-bl"></div>
+    <div class="env-corner corner-br"></div>
+    <div class="env-seal">
+      <div class="seal-heart">❤️</div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="mainContent" class="main-content">
+  <section class="hero" id="home">
+    <div class="hero-content container">
+      <h1 class="hero-name">Omar & Sarah</h1>
+      <div class="hero-sub">We're Getting Married</div>
+      <div class="hero-date">June 26, 2026</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2 class="section-title">The Countdown</h2>
+      <div class="countdown-wrapper">
+        <div class="countdown" id="countdown">
+          <div class="time-box"><div class="time-number" id="days">00</div><div class="time-label">Days</div></div>
+          <div class="time-box"><div class="time-number" id="hours">00</div><div class="time-label">Hours</div></div>
+          <div class="time-box"><div class="time-number" id="minutes">00</div><div class="time-label">Minutes</div></div>
+          <div class="time-box"><div class="time-number" id="seconds">00</div><div class="time-label">Seconds</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2 class="section-title">Our Story</h2>
+      <div class="story-grid">
+        <div class="story-text">
+          <p>On a quiet October night, beneath a calm sky and the gentle touch of autumn air, fate brought us together in the most unexpected way… yet it turned out to be the most beautiful coincidence of our lives.</p>
+          <p>What began as a simple, unplanned encounter slowly unfolded into the start of something truly special, as if the path had always been quietly leading us to that moment. From then on, everything changed, and every day became brighter just by being together.</p>
+          <p>Today, as we step into a new chapter of our lives, we invite you to share with us this moment that began by chance… and will continue as a lifetime of love, joy, and togetherness.</p>
+        </div>
+        <div class="story-img">
+          <img src="https://i.postimg.cc/6QhDXFYh/Chat-GPT-Image-Jun-7-2026-02-50-05-AM.png" alt="Omar and Sarah - Our Love Story" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2 class="section-title">Event Details</h2>
+      <div class="event-card">
+        <div class="event-detail"><strong>📅 Date:</strong> June 26, 2026</div>
+        <div class="event-detail"><strong>⏰ Time:</strong> 8:00 PM - 12:00 AM</div>
+        <div class="event-detail"><strong>📍 Venue:</strong> White Plaza Askar Group</div>
+        <button id="mapBtn" class="venue-btn">✨ Open Google Maps ✨</button>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="guest-message">
+        <p>🤍 Your presence honors us and fills our hearts with joy 🤍</p>
+        <p style="margin-top: 1rem; font-size: 1.2rem;">Having you with us on our most beautiful day means the world to us. Please do not deprive us of sharing this timeless moment with you.</p>
+        <p style="margin-top: 1.5rem;">We look forward to seeing you all 🌸</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>Thank you for celebrating with us</p>
+    <p style="margin-top: 1rem; font-size: 1.4rem;">Omar <span class="heart">❤️</span> Sarah</p>
+    <p style="margin-top: 1.5rem; font-size: 0.8rem; letter-spacing: 1px;">June 26, 2026 · Forever begins</p>
+  </footer>
+
+  <div id="musicControl" class="music-control playing">
+    <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9 18V5l12-2v13" />
+      <circle cx="6" cy="18" r="3" />
+      <circle cx="18" cy="16" r="3" />
+      <path d="M9 12l12-2" />
+    </svg>
+  </div>
+</div>
+
+<audio id="bgMusic" loop preload="auto">
+  <source src="https://files.catbox.moe/t2991o.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  (function() {
+    function createEnvelopeHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'floating-heart-env';
+      heart.innerHTML = ['❤️', '🤍', '💗', '💖', '💕', '✨'][Math.floor(Math.random() * 6)];
+      heart.style.left = Math.random() * 80 + 10 + '%';
+      heart.style.top = Math.random() * 60 + 20 + '%';
+      heart.style.fontSize = (Math.random() * 1.3 + 0.8) + 'rem';
+      heart.style.position = 'fixed';
+      heart.style.pointerEvents = 'none';
+      heart.style.zIndex = '10001';
+      document.body.appendChild(heart);
+      setTimeout(() => { heart.remove(); }, 2800);
+    }
+
+    let heartInterval = null;
+    let musicStarted = false;
+    const envelopeOverlay = document.getElementById('envelopeOverlay');
+    const mainContent = document.getElementById('mainContent');
+    const bgAudio = document.getElementById('bgMusic');
+    const musicControl = document.getElementById('musicControl');
+    
+    bgAudio.volume = 0.45;
+    
+    function startMusicWithSkip() {
+      if (musicStarted) return;
+      musicStarted = true;
+      const playPromise = bgAudio.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          bgAudio.currentTime = 3;
+          if(musicControl) musicControl.classList.add('playing');
+        }).catch(e => {
+          console.log("Audio play error:", e);
+          musicStarted = false;
+        });
+      }
+    }
+    
+    envelopeOverlay.addEventListener('click', (e) => {
+      startMusicWithSkip();
+      envelopeOverlay.classList.add('hide');
+      mainContent.classList.add('show');
+      
+      if (heartInterval) clearInterval(heartInterval);
+      heartInterval = setInterval(() => { createEnvelopeHeart(); }, 380);
+      setTimeout(() => { if (heartInterval) clearInterval(heartInterval); }, 10000);
+      
+      document.querySelectorAll('section').forEach(section => {
+        section.style.opacity = '1';
+        section.style.transform = 'translateY(0)';
+      });
+    });
+    
+    const weddingDate = new Date(2026, 5, 26, 0, 0, 0).getTime(); // month 5 = June
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = weddingDate - now;
+      if (distance < 0) {
+        document.getElementById('days').innerText = '00';
+        document.getElementById('hours').innerText = '00';
+        document.getElementById('minutes').innerText = '00';
+        document.getElementById('seconds').innerText = '00';
+        return;
+      }
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (86400000)) / (3600000));
+      const minutes = Math.floor((distance % 3600000) / 60000);
+      const seconds = Math.floor((distance % 60000) / 1000);
+      document.getElementById('days').innerText = days < 10 ? '0'+days : days;
+      document.getElementById('hours').innerText = hours < 10 ? '0'+hours : hours;
+      document.getElementById('minutes').innerText = minutes < 10 ? '0'+minutes : minutes;
+      document.getElementById('seconds').innerText = seconds < 10 ? '0'+seconds : seconds;
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+    
+    const mapBtn = document.getElementById('mapBtn');
+    if(mapBtn) {
+      mapBtn.addEventListener('click', () => {
+        window.open('https://maps.app.goo.gl/FtUNvh9mrf6NnT38A', '_blank');
+      });
+    }
+    
+    if(musicControl) {
+      musicControl.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (bgAudio.paused) {
+          bgAudio.play().then(() => {
+            musicControl.classList.add('playing');
+            bgAudio.currentTime = 3;
+          }).catch(() => {});
+        } else {
+          bgAudio.pause();
+          musicControl.classList.remove('playing');
+        }
+      });
+    }
+    
+    const hero = document.querySelector('.hero');
+    if(hero) hero.style.opacity = '1';
+  })();
+</script>
+</body>
+</html>
